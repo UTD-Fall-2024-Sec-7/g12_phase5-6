@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Query</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            background-color: #8A9AAE; /* Matches the theme */
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            font-family: 'Lora', serif;
+            margin-bottom: 20px;
+        }
+        form input {
+            margin: 0 10px;
+            padding: 10px;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        form button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #E9D8D8;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: #D8C9C9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f4f4f9;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .back-button {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #E9D8D8;
+            border-radius: 5px;
+            color: #333;
+            width: 200px;
+        }
+        .back-button:hover {
+            background-color: #D8C9C9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Interactive Query</h1>
+        <form method="POST">
+            <input type="text" name="ticker" placeholder="Stock Ticker (optional)">
+            <input type="text" name="representative" placeholder="Congressman (optional)">
+            <button type="submit">Search</button>
+        </form>
+        <h2>Results:</h2>
+        {% if data %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Representative</th>
+                    <th>Transaction Date</th>
+                    <th>Transaction Type</th>
+                    <th>Stock Ticker</th>
+                    <th>Amount</th>
+                    <th>Range</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for transaction in data %}
+                <tr>
+                    <td>{{ transaction.Representative }}</td>
+                    <td>{{ transaction.TransactionDate }}</td>
+                    <td>{{ transaction.Transaction }}</td>
+                    <td>{{ transaction.Ticker }}</td>
+                    <td>${{ transaction.Amount }}</td>
+                    <td>{{ transaction.Range }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No results found. Try another search.</p>
+        {% endif %}
+        <a href="/dashboard" class="back-button">Back to Dashboard</a>
+        {% extends "base.html" %}
+    </div>
+</body>
+</html>
+

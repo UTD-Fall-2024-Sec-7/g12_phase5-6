@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            color: #E7D5C9;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Lora', serif;
+            background-color: #8A9AAE;
+        }
+        .container {
+            text-align: center;
+            background-color: #474056;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #E7D5C9;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            margin: 10px 0;
+            color: #1A1A1A;
+            padding: 10px;
+            background-color: #E7D5C9;
+            width: 250px;
+            font-size: 1rem;
+            font-family: 'Lora', serif;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #E7D5C9;
+            font-family: 'Lora', serif;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        button:hover {
+            background-color: #D8C9C9;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .error {
+            margin-top: 10px;
+            color: #FF0000;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Account Info!</h1>
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        {% if message %}
+            <p class="error">{{ message }}</p>
+        {% endif %}
+        {% extends "base.html" %}
+    </div>
+</body>
+</html>

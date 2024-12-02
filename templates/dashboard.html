@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            background-color: #E7D5C9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #E7D5C9;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+        }
+        .followed-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .followed-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .followed-scroll::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 5px;
+        }
+        .followed-item {
+            flex: 0 0 auto;
+            background-color: #B9C6AE;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            text-align: center;
+            min-width: 100px;
+        }
+        button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 1rem;
+            font-family: 'Lora', serif;
+            color: #E7D5C9;
+            background-color: #474056;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1A1A1A;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ username }}</h1>
+        <h2>Your Followed Congressmen</h2>
+        {% if followed %}
+            <div class="followed-scroll">
+                {% for name in followed %}
+                    <div class="followed-item">{{ name }}</div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>You are not following any congressmen yet.</p>
+        {% endif %}
+        <h2>Select an option to explore:</h2>
+        <form action="/news"><button>View News</button></form>
+        <form action="/follow_congressmen"><button>Follow Congressmen</button></form>
+        <form action="/recent_trades"><button>View Recent Trades</button></form>
+        <form action="/interactive_query"><button>Interactive Query</button></form>
+        <form action="/logout"><button>Logout</button></form>
+        {% extends "base.html" %}
+    </div>
+</body>
+</html>
+
+
+

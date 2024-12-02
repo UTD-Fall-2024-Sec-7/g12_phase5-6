@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}InvestInsight{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            background-color: #8A9AAE; /* Matches the app theme */
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1; /* Keeps content above the banner */
+            position: relative;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 25%; /* Adjust height based on the banner image */
+            z-index: 0; /* Keeps the banner below content */
+        }
+        footer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the entire footer area */
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <img src="{{ url_for('static', filename='images/banner.png') }}" alt="Banner">
+    </footer>
+</body>
+</html>
+
