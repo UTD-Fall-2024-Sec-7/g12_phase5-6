@@ -19,7 +19,7 @@ class transactionClass:
             representative = congressman_name.replace(" ", "+")
             self.conn.request(
                 "GET",
-                f"/beta/bulk/congresstrading?page=1&page_size=10&representative={representative}&nonstock=false",
+                f"/beta/bulk/congresstrading?page=1&page_size=100&representative={representative}",
                 headers=self.headers
             )
             res = self.conn.getresponse()
